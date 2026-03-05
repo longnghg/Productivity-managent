@@ -1,0 +1,19 @@
+<Solution>
+  <Folder Name="/docs/" />
+  <Folder Name="/infra/" />
+  <Folder Name="/scripts/" />
+  <Folder Name="/src/" />
+  <Folder Name="/src/PlanService/">
+    <Project Path="PlanService.API/PlanService.API.csproj" Id="da89d44e-d5e0-406b-8ffc-aca144d729a6" />
+    <Project Path="PlanService.Application/PlanService.Application.csproj" Id="5b090d8a-67fa-4929-9096-b987d459be71" />
+    <Project Path="PlanService.Domain/PlanService.Domain.csproj" Id="616103ae-bf95-4a28-8948-59f373ebefa8" />
+    <Project Path="PlanService.Infras/PlanService.Infras.csproj" Id="368525cb-c800-454f-b14d-27ba626a3c91" />
+  </Folder>
+  <Folder Name="/src/TaskService/">
+    <Project Path="TaskService.API/TaskService.API.csproj" Id="9291aff0-38f3-43a2-bd80-0b6f4e0fd7e0" />
+    <Project Path="TaskService.Application/TaskService.Application.csproj" Id="5c8ee254-ba1f-42e6-b942-f467f7afc9ef" />
+    <Project Path="TaskService.Domain/TaskService.Domain.csproj" Id="ece52e45-4578-4ac2-bcbb-fb09ede332d7" />
+    <Project Path="TaskService.Infras/TaskService.Infras.csproj" Id="fe2a377b-a330-4c01-9528-602991f2b5ca" />
+  </Folder>
+  <Folder Name="/test/" />
+</Solution>

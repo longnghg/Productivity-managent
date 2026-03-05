@@ -1,0 +1,21 @@
+﻿@TaskService.API_HostAddress = http://localhost:5267
+
+GET {{TaskService.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+### Create Task
+POST http://localhost:5267/api/v1/tasks
+Content-Type: application/json
+Accept: application/json
+{
+    "title": "lÀM BÀI TẬP TIẾNG ANH",
+    "description": "Hoàn thành trước thời hạn",
+    "priority": 1,
+    "estimatedMinutes": 120,
+    "userId": 12345,
+    "projectId": 6789,
+    "dueDate": "2026-01-25T17:00:00",
+    "tags": ["urgent", "high-priority"]
+}
+###
