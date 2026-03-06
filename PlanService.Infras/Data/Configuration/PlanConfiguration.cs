@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PlanService.Domain.Entities;
+using PlanService.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
@@ -45,9 +46,8 @@ namespace PlanService.Infras.Data.Configuration
 
             entity.Property(p => p.Status)
                 .HasColumnName("status")
-                .HasConversion<string>()
-                .HasMaxLength(50)
-                .HasDefaultValue("Draft");
+                .HasConversion<int>()
+                .HasDefaultValue(PlanStatus.Draft);
 
             entity.Property(p => p.ProgressPercentage)
                 .HasColumnName("progress_percentage")
@@ -78,18 +78,6 @@ namespace PlanService.Infras.Data.Configuration
                 .HasForeignKey(pt => pt.PlanId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // Indexes
-            //entity.HasIndex(p => p.UserId)
-            //    .HasDatabaseName("idx_plans_user_id");
-
-            //entity.HasIndex(p => p.Status)
-            //    .HasDatabaseName("idx_plans_status");
-
-            //entity.HasIndex(p => p.Type)
-            //    .HasDatabaseName("idx_plans_type");
-
-            //entity.HasIndex(p => new { p.StartDate, p.EndDate })
-            //    .HasDatabaseName("idx_plans_dates");
 
 
         }

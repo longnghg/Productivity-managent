@@ -1,3 +1,4 @@
+using PlanService.Application;
 using PlanService.Infras;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,9 +10,13 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 // Add Application Layer
-
+builder.Services.AddApplication();
 // Add Infrastructure Layer
 builder.Services.AddInfrastructure(builder.Configuration);
+
+// Add Health Checks
+builder.Services.AddHealthChecks();
+
 
 var app = builder.Build();
 
@@ -26,5 +31,12 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+
+
+// Map health checks
+app.MapHealthChecks("/health");
+
+
 
 app.Run();

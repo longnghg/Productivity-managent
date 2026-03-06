@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PlanService.Domain.Entities;
+using PlanService.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
@@ -12,7 +13,6 @@ namespace PlanService.Infras.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<PlanTask> entity)
         {
-            // ==================== PLAN TASK CONFIGURATION ====================
 
             entity.ToTable("plan_tasks");
 
@@ -51,9 +51,8 @@ namespace PlanService.Infras.Data.Configuration
 
             entity.Property(pt => pt.Status)
                 .HasColumnName("status")
-                .HasConversion<string>()
-                .HasMaxLength(50)
-                .HasDefaultValue("Pending");
+                .HasConversion<int>()
+                .HasDefaultValue(PlanTaskStatus.Pending);
 
             entity.Property(pt => pt.CompletedAt)
                 .HasColumnName("completed_at")
@@ -95,22 +94,6 @@ namespace PlanService.Infras.Data.Configuration
                 .HasForeignKey(pt => pt.MilestoneId)
                 .OnDelete(DeleteBehavior.SetNull);
 
-            // Indexes
-            //entity.HasIndex(pt => pt.PlanId)
-            //    .HasDatabaseName("idx_plan_tasks_plan_id");
-
-            //entity.HasIndex(pt => pt.MilestoneId)
-            //    .HasDatabaseName("idx_plan_tasks_milestone_id");
-
-            //entity.HasIndex(pt => pt.ExternalTaskId)
-            //    .HasDatabaseName("idx_plan_tasks_external_task_id")
-            //    .HasFilter("external_task_id IS NOT NULL");
-
-            //entity.HasIndex(pt => pt.Status)
-            //    .HasDatabaseName("idx_plan_tasks_status");
-
-            //entity.HasIndex(pt => pt.AssignedTo)
-            //    .HasDatabaseName("idx_plan_tasks_assigned_to");
 
 
         }

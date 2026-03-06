@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PlanService.Domain.Entities;
+using PlanService.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
@@ -38,9 +39,9 @@ namespace PlanService.Infras.Data.Configuration
 
             entity.Property(m => m.Status)
                 .HasColumnName("status")
-                .HasConversion<string>()
+                .HasConversion<int>()
                 .HasMaxLength(50)
-                .HasDefaultValue("Pending");
+                .HasDefaultValue(MilestoneStatus.Pending);
 
             entity.Property(m => m.CompletedAt)
                 .HasColumnName("completed_at")
@@ -65,17 +66,6 @@ namespace PlanService.Infras.Data.Configuration
                 .WithMany(p => p.Milestones)
                 .HasForeignKey(m => m.PlanId)
                 .OnDelete(DeleteBehavior.Cascade);
-
-            //// Indexes
-            //entity.HasIndex(m => m.PlanId)
-            //    .HasDatabaseName("idx_milestones_plan_id");
-
-            //entity.HasIndex(m => m.Status)
-            //    .HasDatabaseName("idx_milestones_status");
-
-            //entity.HasIndex(m => m.TargetDate)
-            //    .HasDatabaseName("idx_milestones_target_date");
-
 
 
         }

@@ -23,5 +23,7 @@ namespace PlanService.Application.Interfaces.IRepositories
         Task<PlanTask?> GetPlanTaskByExternalIdAsync(long externalTaskId, CancellationToken cancellationToken = default);
         Task<List<PlanTask>> GetPlanTasksByPlanIdAsync(long planId, CancellationToken cancellationToken = default);
         Task UpdatePlanTaskAsync(PlanTask planTask, CancellationToken cancellationToken = default);
+
+        IQueryable<Plan> GetQueryable();
     }
 }

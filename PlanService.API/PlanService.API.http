@@ -1,6 +1,109 @@
 @PlanService.API_HostAddress = http://localhost:5037
 
-GET {{PlanService.API_HostAddress}}/weatherforecast/
+
+### GET: Health check
+GET {{PlanService.API_HostAddress}}/health
 Accept: application/json
 
-###
+### POST: Create new plan with tasks
+POST {{PlanService.API_HostAddress}}/api/v1/plans/
+Content-Type: application/json
+Accept: application/json
+{
+  "name": "Learn English",
+  "description": "Daily learning plan",
+  "type": 1,
+  "startDate": "2026-03-01T00:00:00",
+  "endDate": "2026-06-01T00:00:00",
+  "userId": 1,
+  "milestones": [
+    {
+      "name": "Basic Grammar",
+      "description": "Finish grammar basics",
+      "targetDate": "2026-03-15T00:00:00"
+    }
+  ],
+  "tasks": [
+    {
+      "title": "Study verbs",
+      "description": "Learn common verbs",
+      "estimatedMinutes": 30,
+      "priority": 1,
+      "milestoneId": null,
+      "tags": ["english", "grammar"]
+    }
+  ]
+}
+
+### POST: Create a simple plan (minimal example)
+POST {{PlanService.API_HostAddress}}/api/v1/plans
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name": "Test Plan",
+    "description": "Testing plan creation",
+    "type": "Project",
+    "startDate": "2024-01-01",
+    "endDate": "2024-01-31",
+    "userId": 1,
+    "milestones": [],
+    "tasks": [
+        {
+            "title": "Test Task 1",
+            "description": "First test task",
+            "estimatedMinutes": 60,
+            "priority": "Medium",
+            "tags": ["test"]
+        },
+        {
+            "title": "Test Task 2",
+            "description": "Second test task",
+            "estimatedMinutes": 120,
+            "priority": "Low",
+            "tags": ["test", "optional"]
+        }
+    ]
+}
+
+### GET all plans
+GET {{PlanService.API_HostAddress}}/api/v1/plans?userId=1
+Accept: application/json
+
+### GET plan by ID
+GET {{PlanService.API_HostAddress}}/api/v1/plans/1
+Accept: application/json
+
+### GET plan tasks
+GET {{PlanService.API_HostAddress}}/api/v1/plans/1/tasks
+Accept: application/json
+
+### UPDATE plan
+PUT {{PlanService.API_HostAddress}}/api/v1/plans/1
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name": "Updated Plan Name",
+    "description": "This plan has been updated",
+    "type": "Goal",
+    "startDate": "2024-02-01",
+    "endDate": "2024-03-31",
+    "status": "Active"
+}
+
+### ACTIVATE plan
+POST {{PlanService.API_HostAddress}}/api/v1/plans/1/activate
+Accept: application/json
+
+### COMPLETE task
+PUT {{PlanService.API_HostAddress}}/api/v1/plans/tasks/1/complete
+Accept: application/json
+
+### DELETE plan
+DELETE {{PlanService.API_HostAddress}}/api/v1/plans/1
+Accept: application/json
+
+### GET stats
+GET {{PlanService.API_HostAddress}}/api/v1/plans/stats?userId=1
+Accept: application/json

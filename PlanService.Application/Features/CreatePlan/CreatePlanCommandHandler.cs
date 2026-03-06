@@ -59,16 +59,7 @@ namespace PlanService.Application.Features.CreatePlan
                 }
 
                 //// 3. Add tasks
-                //foreach (var taskRequest in request.Tasks)
-                //{
-                //    plan.AddTask(
-                //        taskRequest.Title,
-                //        taskRequest.Description,
-                //        taskRequest.EstimatedMinutes,
-                //        taskRequest.Priority,
-                //        taskRequest.MilestoneId);
-                //}
-
+                // TODO: handle later
                 // 4. Save to database
                 await _planRepository.AddAsync(plan, cancellationToken);
                 await _unitOfWork.SaveChangesAsync(cancellationToken);

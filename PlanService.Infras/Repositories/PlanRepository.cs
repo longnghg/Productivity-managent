@@ -134,5 +134,9 @@ namespace PlanService.Infras.Repositories
             _context.PlanTasks.Update(planTask);
             await Task.CompletedTask;
         }
+        public IQueryable<Plan> GetQueryable()
+        {
+            return _dbSet.AsQueryable();
+        }
     }
 }
